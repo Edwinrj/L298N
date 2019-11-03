@@ -17,10 +17,9 @@ or directly writing the include statement in your code:
 ## INSTANTIATE THE MODULE
 To drive a motor the first thing is to create an instance of the library.
 ```
-L298N myMotor(EN, IN1, IN2);
+L298N myMotor(IN1, IN2);
 ```
-* EN = is the Arduino pin (requires a PWM pin) connected to the Enable pin of the module
-* IN1 and IN2 are the two digital pins connected to IN1 and IN2 pins of the module
+* IN1 and IN2 are the two PWM pins connected to IN1 and IN2 pins of the module
 
 ## Methods
 | Method | Params | Description
