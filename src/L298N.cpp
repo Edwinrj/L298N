@@ -8,8 +8,7 @@
 
 typedef void (*CallBackFunction) ();
 
-L298N::L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2){
-  _pinEnable = pinEnable;
+L298N::L298N(uint8_t pinIN1, uint8_t pinIN2){
   _pinIN1 = pinIN1;
   _pinIN2 = pinIN2;
   _pwmVal = 100;
@@ -17,7 +16,6 @@ L298N::L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2){
   _canMove = true;
   _lastMs = 0;
 
-  pinMode(_pinEnable, OUTPUT);
   pinMode(_pinIN1, OUTPUT);
   pinMode(_pinIN2, OUTPUT);
 }
@@ -32,11 +30,8 @@ unsigned short L298N::getSpeed(){
 }
 
 void L298N::forward(){
-  digitalWrite(_pinIN1, HIGH);
+  digitalWrite(_pinIN1, _pwmVal);
   digitalWrite(_pinIN2, LOW);
-
-  analogWrite(_pinEnable, _pwmVal);
-
   _isMoving = true;
 }
 
@@ -64,10 +59,7 @@ void L298N::forwardFor(unsigned long delay){
 
 void L298N::backward(){
   digitalWrite(_pinIN1, LOW);
-  digitalWrite(_pinIN2, HIGH);
-
-  analogWrite(_pinEnable, _pwmVal);
-
+  digitalWrite(_pinIN2, _pwmVal);
   _isMoving = true;
 }
 
@@ -106,9 +98,6 @@ void L298N::run(uint8_t direction){
 void L298N::stop(){
   digitalWrite(_pinIN1, LOW);
   digitalWrite(_pinIN2, LOW);
-
-  analogWrite(_pinEnable, 255);
-  
   _isMoving = false;
 }
 
