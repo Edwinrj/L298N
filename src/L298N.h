@@ -13,7 +13,7 @@ class L298N{
             FORWARD  = 0,
             BACKWARD = 1
       } Direction;
-      L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2);
+      L298N(uint8_t pinIN1, uint8_t pinIN2);
       void setSpeed(unsigned short pwmVal);
       unsigned short getSpeed();
       void forward();
@@ -27,7 +27,6 @@ class L298N{
       void reset();
       boolean isMoving();
    private:
-      byte _pinEnable;
       byte _pinIN1;
       byte _pinIN2;
       byte _pwmVal;
