@@ -1,12 +1,11 @@
 #include <L298N.h>
 
 //pin definition
-#define EN 9
-#define IN1 8
-#define IN2 7
+#define IN1 5
+#define IN2 6
 
 //create a motor instance
-L298N motor(EN, IN1, IN2);
+L298N motor(IN1, IN2);
 
 void setup() {
 
